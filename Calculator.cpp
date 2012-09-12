@@ -3,7 +3,7 @@
 using namespace std; 
  
 int main() 
-{   
+{ 
           double num1, num2, add, sub, multi, div; 
           cout << "Please enter a number: "; 
           cin >> num1; 
@@ -15,6 +15,12 @@ int main()
           div = num1 / num2; 
           cout << num1 << " + " << num2 << " = " << add << endl; 
           cout << num1 << " - " << num2 << " = " << sub << endl; 
-          cout << num1 << " * " << num2 << " = " << multi << endl;
-          cout << num1 << " / " << num2 << " = " << div << endl;
+          cout << num1 << " * " << num2 << " = " << multi << endl; 
+          if ( num2 == 0 ) 
+               cout << "Error Cannot divide by 0" << endl; 
+          else 
+          { 
+               num2 != 0; 
+               cout << num1 << " / " << num2 << " = " << div << endl; 
+          } 
 }
