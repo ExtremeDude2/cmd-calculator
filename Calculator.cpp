@@ -20,7 +20,7 @@ int main()
 		cout << num1 << " * " << num2 << " = " << multi << endl;
 		div = num1 / num2;										// Divide first and second number
 		if ( num2 == 0 )
-			cout << "Error Cannot divide by 0" << endl;			// Make sure not to divide by zero, also prevents crashing
+			cout << "Error cannot divide by 0" << endl;			// Make sure not to divide by zero, prevents crashing
 		else
 			cout << num1 << " / " << num2 << " = " << div << endl;
 		root1 = sqrt(num1);										// Square root of first number
