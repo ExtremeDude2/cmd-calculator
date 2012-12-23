@@ -19,7 +19,7 @@ int main()
 		multi = num1 * num2;									// Multiply first and second number
 		cout << num1 << " * " << num2 << " = " << multi << endl;
 		div = num1 / num2;										// Divide first and second number
-		if ( num2 == 0 )
+		if (num2 == 0)
 			cout << "Error cannot divide by 0" << endl;			// Make sure not to divide by zero, prevents crashing
 		else
 			cout << num1 << " / " << num2 << " = " << div << endl;
@@ -29,5 +29,16 @@ int main()
 		cout << "The square root of " << num2 << " is " << root2 << endl;
 		power = pow(num1, num2);								// First number to the power of the second number
 		cout << num1 << " to the power of " << num2 << " is " << power << endl;
+		if (num1 == num2)										// Find the larger of the two numbers
+			cout << "The two numbers are equal" << endl;
+		else
+		{
+			cout << "The larger of the two numbers is ";
+			if (num1 > num2)
+				cout << num1 << endl;
+			if (num2 > num1)
+				cout << num2 << endl;
+		}
+		cout << "----------------------------------" << endl;
 	}
 }
