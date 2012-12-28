@@ -36,9 +36,10 @@ int main()
 			cout << "The larger of the two numbers is ";
 			if (num1 > num2)
 				cout << num1 << endl;
-			if (num2 > num1)
+			if (num1 < num2)
 				cout << num2 << endl;
 		}
+		cout << "Your random number is " << rand() << endl;	// Generate a random number
 		cout << "----------------------------------" << endl;
 	}
 }
