@@ -31,15 +31,21 @@ int main()
 		// Divide first and second number
 		// Make sure not to divide by zero, prevents crashing
 		if (num2 == 0)
-			cout << "Error cannot divide by 0" << endl;
+			cout << "Error: cannot divide by 0" << endl;
 		else
 			cout << num1 << " / " << num2 << " = " << num1 / num2 << endl;
 
 		// Square root of first number
-		cout << "The square root of " << num1 << " is " << sqrt(num1) << endl;
+		if (num1 < 0)
+			cout << "Error: cannot find the square root of a number less than 0" << endl;
+		else
+			cout << "The square root of " << num1 << " is " << sqrt(num1) << endl;
 
 		// Square root of second number
-		cout << "The square root of " << num2 << " is " << sqrt(num2) << endl;
+		if (num2 < 0)
+			cout << "Error: cannot find the square root of a number less than 0" << endl;
+		else
+			cout << "The square root of " << num2 << " is " << sqrt(num2) << endl;
 
 		// First number to the power of the second number
 		cout << num1 << " to the power of " << num2 << " is " << pow(num1, num2) << endl;
