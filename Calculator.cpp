@@ -13,7 +13,7 @@ int main()
 {
 	while(true)
 	{
-		double num1, num2;
+		long double num1, num2;
 		cout << "Please enter a number: ";
 		cin >> num1;
 		cout << "Please enter another number: ";
