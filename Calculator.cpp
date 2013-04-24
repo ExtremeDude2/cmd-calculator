@@ -1,19 +1,21 @@
 /************************************************************/
-/*															*/
-/* Created by Ryan Collins 2012-2013, use at your own risk.	*/
-/*															*/
+/*	                                                        */
+/* Created by Ryan Collins 2012-2013, use at your own risk.  */
+/*	                                                        */
 /************************************************************/
 
 #include <iostream>
 #include <cmath>
+#include <ctime>
 
 using namespace std;
+
+long double num1, num2;
 
 int main()
 {
 	while(true)
 	{
-		long double num1, num2;
 		cout << "Please enter a number: ";
 		cin >> num1;
 		cout << "Please enter another number: ";
@@ -60,6 +62,8 @@ int main()
 			if (num1 < num2)
 				cout << num2 << " is larger than " << num1 << endl;
 		}
+    srand (time(NULL));
+    cout << " Random number of the day is: " << rand() << endl;
 		cout << "----------------------------------" << endl;
 	}
 }
