@@ -55,13 +55,11 @@ int main()
 		// Find the larger of the two numbers, if any
 		if (num1 == num2)
 			cout << "The two numbers are equal" << endl;
-		else
-		{
-			if (num1 > num2)
+		 if (num1 > num2)
 				cout << num1 << " is larger than " << num2 << endl;
-			if (num1 < num2)
+		 if (num1 < num2)
 				cout << num2 << " is larger than " << num1 << endl;
-		}
+
     srand (time(NULL));
     cout << " Random number of the day is: " << rand() << endl;
 		cout << "----------------------------------" << endl;
