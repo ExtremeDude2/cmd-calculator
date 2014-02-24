@@ -1,6 +1,6 @@
 /************************************************************/
 /*	                                                        */
-/* Created by Ryan Collins 2012-2013, use at your own risk.  */
+/* Created by Ryan Collins 2012-2013, use at your own risk. */
 /*                                                          */
 /************************************************************/
 
@@ -52,12 +52,15 @@ int main()
 		// First number to the power of the second number
 		cout << num1 << " to the power of " << num2 << " is " << pow(num1, num2) << endl;
 
+    // Second number to the power of the first number
+		cout << num2 << " to the power of " << num1 << " is " << pow(num2, num1) << endl;
+
 		// Find the larger of the two numbers, if any
-		if (num1 == num2)
+    if (num1 == num2)
 			cout << "The two numbers are equal" << endl;
-		if (num1 > num2)
+    if (num1 > num2)
 			cout << num1 << " is larger than " << num2 << endl;
-	   if (num1 < num2)
+    if (num1 < num2)
 	 		cout << num2 << " is larger than " << num1 << endl;
 
     srand (time(NULL));
