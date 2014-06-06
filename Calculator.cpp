@@ -14,10 +14,12 @@ long double num1, num2;
 
 int main()
 {
-	while(true)
+	while(1)
 	{
+		// Ask user to enter the first number   
 		cout << "Please enter a number: ";
 		cin >> num1;
+		// Ask user to enter the first number
 		cout << "Please enter another number: ";
 		cin >> num2;
 
