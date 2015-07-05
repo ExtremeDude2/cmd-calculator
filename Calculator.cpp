@@ -12,6 +12,22 @@ using namespace std;
 
 long double num1, num2;
 
+static unsigned long factorial(unsigned long n)
+{
+    unsigned long answer, old_answer;
+    unsigned long i;
+
+    answer = 1;
+    for (i = 1; i < n + 1; i++)
+    {
+        old_answer = answer;
+        answer *= i;
+        if (answer < old_answer) /* unsigned overflow */
+            return 0; /* `n' is too large to store the correct factorial for. */
+    }
+    return (answer);
+}
+
 int main()
 {
 	while(1)
@@ -50,6 +66,14 @@ int main()
 			cout << "Error: cannot find the square root of a number less than 0" << endl;
 		else
 			cout << "The square root of " << num2 << " is " << sqrt(num2) << endl;
+
+/*
+ * integer-precision factorials
+ */
+		if (num1 >= 0)
+			printf("The factorial of %lu is %lu.\n", num1, factorial(num1));
+		if (num2 >= 0)
+			printf("The factorial of %lu is %lu.\n", num2, factorial(num2));
 
 		// First number to the power of the second number
 		cout << num1 << " to the power of " << num2 << " is " << pow(num1, num2) << endl;
