@@ -14,12 +14,17 @@ long double num1, num2;
 
 static unsigned long factorial(unsigned long n)
 {
-    unsigned long answer;
-    register int i;
+    unsigned long answer, old_answer;
+    unsigned long i;
 
     answer = 1;
-    for (i = 1; i < n; i++)
-        answer *= n;
+    for (i = 1; i < n + 1; i++)
+    {
+        old_answer = answer;
+        answer *= i;
+        if (answer < old_answer) /* unsigned overflow */
+            return 0; /* `n' is too large to store the correct factorial for. */
+    }
     return (answer);
 }
 
