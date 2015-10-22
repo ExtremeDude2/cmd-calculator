@@ -116,4 +116,5 @@ int main(void)
         printf("Random number of the day is:  %g\n", rand());
         puts("----------------------------------");
     }
+    return 0;
 }
