@@ -9,8 +9,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-double num1, num2;
-
 static unsigned long factorial(unsigned long n)
 {
     unsigned long answer, old_answer;
@@ -58,6 +56,8 @@ static double carry_in(void)
 
 int main(void)
 {
+    double num1, num2;
+    
     while (1)
     {
         fputs("Please enter a number: ", stdout);
