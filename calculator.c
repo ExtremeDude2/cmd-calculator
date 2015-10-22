@@ -7,8 +7,6 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-/* srand(time(NULL)) */
 #include <time.h>
 
 double num1, num2;
