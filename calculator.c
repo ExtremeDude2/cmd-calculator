@@ -7,6 +7,8 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+/* srand(time(NULL)) */
 #include <time.h>
 
 static unsigned long factorial(unsigned long n)
