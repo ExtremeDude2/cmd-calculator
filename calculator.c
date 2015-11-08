@@ -58,7 +58,7 @@ int main(void)
 {
     double num1, num2;
     
-    while (1)
+    for (;;)
     {
         fputs("Please enter a number: ", stdout);
         num1 = carry_in();
