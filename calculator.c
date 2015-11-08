@@ -111,7 +111,7 @@ int main(void)
              printf("%g is larger than %g.\n", num2, num1);
 
         srand(time(NULL));
-        printf("Random number of the day is:  %g\n", rand());
+        printf("Random number of the day is:  %i\n", rand());
         puts("----------------------------------");
     }
     return 0;
