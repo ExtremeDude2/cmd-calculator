@@ -9,50 +9,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-static unsigned long factorial(unsigned long n)
-{
-    unsigned long answer, old_answer;
-    unsigned long i;
-
-    answer = 1;
-    for (i = 1; i < n + 1; i++)
-    {
-        old_answer = answer;
-        answer *= i;
-        if (answer < old_answer) /* unsigned overflow */
-            return 0; /* `n' is too large to store the correct factorial for. */
-    }
-    return (answer);
-}
-
-static double carry_in(void)
-{
-    static char temp_buffer[32];
-    size_t i;
-
-    for (i = 0; i < sizeof(temp_buffer); i++)
-    {
-        int character;
-
-        character = getchar();
-        if (character == '\n')
-            break;
-        if (character == EOF)
-        {
-            fputs("scan_long:  unexpected EOF\n", stderr);
-            break;
-        }
-        temp_buffer[i] = (char)character;
-    }
-
-    if (i >= sizeof(temp_buffer))
-    {
-        fputs("scan_long:  evaded buffer overrun\n", stderr);
-        i = sizeof(temp_buffer) - 1;
-    }
-    temp_buffer[i] = '\0';
-    return strtod(temp_buffer, NULL);
-}
+static unsigned long factorial(unsigned long n);
+static double carry_in(void);
 
 int main(void)
 {
@@ -115,4 +73,49 @@ int main(void)
         puts("----------------------------------");
     }
     return 0;
+}
+
+static unsigned long factorial(unsigned long n)
+{
+    unsigned long answer, old_answer;
+    unsigned long i;
+
+    answer = 1;
+    for (i = 1; i < n + 1; i++)
+    {
+        old_answer = answer;
+        answer *= i;
+        if (answer < old_answer) /* unsigned overflow */
+            return 0; /* `n' is too large to store the correct factorial for. */
+    }
+    return (answer);
+}
+
+static double carry_in(void)
+{
+    static char temp_buffer[32];
+    size_t i;
+
+    for (i = 0; i < sizeof(temp_buffer); i++)
+    {
+        int character;
+
+        character = getchar();
+        if (character == '\n')
+            break;
+        if (character == EOF)
+        {
+            fputs("scan_long:  unexpected EOF\n", stderr);
+            break;
+        }
+        temp_buffer[i] = (char)character;
+    }
+
+    if (i >= sizeof(temp_buffer))
+    {
+        fputs("scan_long:  evaded buffer overrun\n", stderr);
+        i = sizeof(temp_buffer) - 1;
+    }
+    temp_buffer[i] = '\0';
+    return strtod(temp_buffer, NULL);
 }
