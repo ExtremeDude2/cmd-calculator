@@ -57,7 +57,8 @@ static double carry_in(void)
 int main(void)
 {
     double num1, num2;
-    
+
+    srand(time(NULL));
     for (;;)
     {
         fputs("Please enter a number: ", stdout);
@@ -108,9 +109,8 @@ int main(void)
         if (num1 > num2)
             printf("%g is larger than %g.\n", num1, num2);
         if (num1 < num2)
-             printf("%g is larger than %g.\n", num2, num1);
+            printf("%g is larger than %g.\n", num2, num1);
 
-        srand(time(NULL));
         printf("Random number of the day is:  %i\n", rand());
         puts("----------------------------------");
     }
