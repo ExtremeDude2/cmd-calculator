@@ -9,6 +9,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+
+/* srand(time(NULL)) */
 #include <time.h>
 
 typedef double(*op_ptr)(double m, double n);
