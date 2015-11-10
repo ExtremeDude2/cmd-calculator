@@ -4,10 +4,53 @@
 /*                                                          */
 /************************************************************/
 
+#include <float.h>
 #include <math.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
+typedef double(*op_ptr)(double m, double n);
+
+double add(double m, double n)
+{
+    return (m + n);
+}
+double subtract(double m, double n)
+{
+    return (m - n);
+}
+double multiply(double m, double n)
+{
+    return (m * n);
+}
+double divide(double m, double n)
+{
+#if 1
+    if (n == 0) /* Undefined, but we must return (something). */
+    {
+        n = DBL_MIN; /* smallest positive real number */
+        m = (m < 0) ? -DBL_MAX : +DBL_MAX;
+    } /* Geometric graphs of x/0 look prettiest this way. */
+#endif
+    return (m / n);
+}
+double power(double m, double n)
+{
+    return pow(m, n);
+}
+
+op_ptr functions[] = {
+    add,
+    subtract,
+    multiply,
+    divide,
+    power,
+};
+static const char operators[] = {
+    '+', '-', '*', '/', '^',
+};
 
 static unsigned long factorial(unsigned long n)
 {
@@ -56,6 +99,7 @@ static double carry_in(void)
 
 int main(void)
 {
+    size_t i;
     double num1, num2;
     
     for (;;)
@@ -66,13 +110,12 @@ int main(void)
         fputs("Please enter another number: ", stdout);
         num2 = carry_in();
 
-        printf("%g + %g = %g\n", num1, num2, num1 + num2);
-        printf("%g - %g = %g\n", num1, num2, num1 - num2);
-        printf("%g * %g = %g\n", num1, num2, num1 * num2);
-        if (num2 == 0)
-            fputs("Cannot divide by 0.\n", stderr);
-        else
-            printf("%g / %g = %g\n", num1, num2, num1 / num2);
+        for (i = 0; i < sizeof(functions) / sizeof(op_ptr); i++)
+            printf(
+                "%g %c %g = %g\n",
+                num1, operators[i], num2,
+                functions[i](num1, num2)
+            );
 
         if (num1 < 0)
             puts("Error: cannot find the square root of a number less than 0");
@@ -100,8 +143,7 @@ int main(void)
                 factorial((unsigned long)num2)
             );
 
-        printf("%g to the power of %g is %g.\n", num1, num2, pow(num1, num2));
-        printf("%g to the power of %g is %g.\n", num2, num1, pow(num2, num1));
+        printf("%g to the power of %g is %g.\n", num2, num1, power(num2, num1));
 
         if (num1 == num2)
             puts("The two numbers are equal");
