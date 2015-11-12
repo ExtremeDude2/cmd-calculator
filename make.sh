@@ -20,10 +20,12 @@ FLAGS_x86="\
 C_FLAGS=$FLAGS_x86
 
 echo Compiling sources...
+cc -o $obj/main.asm             $src/main.c $C_FLAGS
 cc -o $obj/calculator.asm       $src/calculator.c $C_FLAGS
 
 echo Assembling compiled sources...
+as -o $obj/main.o               $obj/main.asm
 as -o $obj/calculator.o         $obj/calculator.asm
 
 echo Linking assembled object files...
-gcc -o $src/calc $obj/calculator.o -s
+gcc -o $src/calc $obj/calculator.o $obj/main.o -s
