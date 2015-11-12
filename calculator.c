@@ -30,9 +30,29 @@ double divide(double m, double n)
 #endif
     return (m / n);
 }
+
 double power(double m, double n)
 {
     return pow(m, n);
+}
+double root(double radicand, double index)
+{
+    double scientific; /* index * 10^x, until it becomes an integer */
+    long i; /* index as an integer... 8 ^ (5/3) = cuberoot(8 ^ 5) */
+
+    if (radicand == 0)
+        return 0; /* divide(0, 0) is too abstract and could be anything. */
+    if (index == 0)
+        return divide(radicand, 0);
+
+    scientific = index;
+    while (scientific != (double)((long int)scientific))
+        scientific *= 10;
+    i = (signed long)scientific;
+
+    if (radicand < 0 && i % 2 != 0) /* odd-roots of negative numbers */
+        return -power(-radicand, 1 / index);
+    return power(radicand, 1 / index);
 }
 
 unsigned long factorial(unsigned long n)
