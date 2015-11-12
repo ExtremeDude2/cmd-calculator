@@ -62,13 +62,13 @@ int main(void)
             printf(
                 "The factorial of %lu is %lu.\n",
                 (unsigned long)num1,
-                factorial((unsigned long)num1)
+                (unsigned long)factorial((whole)num1)
             );
         if (num2 >= 0)
             printf(
                 "The factorial of %lu is %lu.\n",
                 (unsigned long)num2,
-                factorial((unsigned long)num2)
+                (unsigned long)factorial((whole)num2)
             );
 
         printf("%g to the power of %g is %g.\n", num2, num1, power(num2, num1));
