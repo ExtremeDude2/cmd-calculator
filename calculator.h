@@ -10,6 +10,8 @@ double multiply(double m, double n);
 double divide(double m, double n);
 
 double power(double m, double n);
+double root(double radicand, double index); /* basically power(m, 1/n) */
+
 extern unsigned long factorial(unsigned long n);
 
 /*

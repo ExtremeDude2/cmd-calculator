@@ -11,7 +11,7 @@
 #include <time.h>
 
 static const char operators[] = {
-    '+', '-', '*', '/', '^',
+    '+', '-', '*', '/', '^', 'R',
 };
 
 const op_ptr functions[] = {
@@ -19,7 +19,9 @@ const op_ptr functions[] = {
     subtract,
     multiply,
     divide,
+
     power,
+    root,
 };
 
 int main(void)
@@ -46,12 +48,12 @@ int main(void)
         if (num1 < 0)
             puts("Error: cannot find the square root of a number less than 0");
         else
-            printf("The square root of %g is %g.\n", num1, sqrt(num1));
+            printf("The square root of %g is %g.\n", num1, root(num1, 2));
 
         if (num2 < 0)
             puts("Error: cannot find the square root of a number less than 0");
         else
-            printf("The square root of %g is %g.\n", num2, sqrt(num2));
+            printf("The square root of %g is %g.\n", num2, root(num2, 2));
 
 /*
  * integer-precision factorials
