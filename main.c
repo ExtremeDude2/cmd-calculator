@@ -86,29 +86,20 @@ int main(void)
 
 static double carry_in(void)
 {
-    static char temp_buffer[32];
-    size_t i;
+    static char temp_buffer[64];
+    register size_t i;
 
     for (i = 0; i < sizeof(temp_buffer); i++)
     {
         int character;
 
+        temp_buffer[i] = '\0';
         character = getchar();
         if (character == '\n')
-            break;
-        if (character == EOF)
-        {
-            fputs("scan_long:  unexpected EOF\n", stderr);
-            break;
-        }
+            return strtod(&temp_buffer[0], NULL);
+        if (character < 0 || character > +127)
+            return 0;
         temp_buffer[i] = (char)character;
     }
-
-    if (i >= sizeof(temp_buffer))
-    {
-        fputs("scan_long:  evaded buffer overrun\n", stderr);
-        i = sizeof(temp_buffer) - 1;
-    }
-    temp_buffer[i] = '\0';
-    return strtod(temp_buffer, NULL);
+    return 0; /* standard library:  No valid conversion can be done. */
 }
