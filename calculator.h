@@ -42,6 +42,9 @@ real divide(real m, real n);
 real power(real m, real n);
 real root(real radicand, real index); /* basically power(m, 1/n) */
 
+real greatest_common_divisor(real m, real n);
+real least_common_multiple(real m, real n);
+
 extern whole factorial(whole n);
 
 /*
