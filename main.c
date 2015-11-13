@@ -28,7 +28,7 @@ const op_ptr functions[] = {
 int main(void)
 {
     size_t i;
-    double num1, num2;
+    real num1, num2;
 
     srand(time(NULL));
     for (;;)
