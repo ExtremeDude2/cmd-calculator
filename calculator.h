@@ -1,6 +1,13 @@
 #ifndef _CALCULATOR_H_
 #define _CALCULATOR_H_
 
+#if 0
+typedef long double             real;
+#else
+typedef double                  real;
+#endif
+typedef real (*op_ptr)(real m, real n);
+
 /*
  * Try to take advantage of the C implementation to provide the best
  * (highest-precision) integer types--preferably in a C89-compliant way.
@@ -25,16 +32,15 @@ typedef long int                integer;
 typedef size_t                  whole;
 #endif
 
-typedef double(*op_ptr)(double m, double n);
 extern const op_ptr functions[];
 
-double add(double m, double n);
-double subtract(double m, double n);
-double multiply(double m, double n);
-double divide(double m, double n);
+real add(real m, real n);
+real subtract(real m, real n);
+real multiply(real m, real n);
+real divide(real m, real n);
 
-double power(double m, double n);
-double root(double radicand, double index); /* basically power(m, 1/n) */
+real power(real m, real n);
+real root(real radicand, real index); /* basically power(m, 1/n) */
 
 extern whole factorial(whole n);
 

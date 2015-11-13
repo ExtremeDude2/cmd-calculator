@@ -8,19 +8,19 @@
 #include <math.h>
 #include "calculator.h"
 
-double add(double m, double n)
+real add(real m, real n)
 {
     return (m + n);
 }
-double subtract(double m, double n)
+real subtract(real m, real n)
 {
     return (m - n);
 }
-double multiply(double m, double n)
+real multiply(real m, real n)
 {
     return (m * n);
 }
-double divide(double m, double n)
+real divide(real m, real n)
 {
 #ifndef PREFER_NATIVE_HARDWARE_DIVISION_BY_ZERO
     if (n == 0) /* Undefined, but we must return (something). */
@@ -32,24 +32,24 @@ double divide(double m, double n)
     return (m / n);
 }
 
-double power(double m, double n)
+real power(real m, real n)
 {
     return pow(m, n);
 }
-double root(double radicand, double index)
+real root(real radicand, real index)
 {
-    double scientific; /* index * 10^x, until it becomes an integer */
-    integer i; /* e.g. 8 ^ (5/3) = cuberoot(8 ^ 5), so i = 3 */
+    real mantissa; /* index * 10^x, until it becomes an integer */
+    integer i;
 
     if (radicand == 0)
         return 0; /* divide(0, 0) is too abstract and could be anything. */
     if (index == 0)
         return divide(radicand, 0);
 
-    scientific = index;
-    while (scientific != (double)((integer)scientific))
-        scientific *= 10;
-    i = (integer)scientific;
+    mantissa = index;
+    while (mantissa != (real)((integer)mantissa))
+        mantissa *= 10;
+    i = (integer)mantissa;
 
     if (radicand < 0 && i % 2 != 0) /* odd-roots of negative numbers */
         return -power(-radicand, 1 / index);
