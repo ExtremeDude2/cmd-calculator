@@ -10,8 +10,9 @@
 #include <stdlib.h>
 #include <time.h>
 
-static const char operators[] = {
-    '+', '-', '*', '/', '^', 'R',
+static const char* operators[] = {
+    "add", "sub", "mul", "div",
+    "exp", "root",
 };
 
 const op_ptr functions[] = {
@@ -40,8 +41,8 @@ int main(void)
 
         for (i = 0; i < sizeof(functions) / sizeof(op_ptr); i++)
             printf(
-                "%g %c %g = %g\n",
-                num1, operators[i], num2,
+                "%s(%g, %g) = %g\n",
+                operators[i], num1, num2,
                 functions[i](num1, num2)
             );
 
