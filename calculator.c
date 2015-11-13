@@ -81,6 +81,28 @@ real greatest_common_divisor(real m, real n)
             answer = i;
     return (answer);
 }
+real least_common_multiple(real m, real n)
+{
+    whole a, b;
+    whole answer;
+
+    m = (m < 0) ? -m : +m;
+    n = (n < 0) ? -n : +n;
+
+    a = (whole)m;
+    b = (whole)n;
+    if (m != a || n != b)
+        return 1;
+
+    if (a == 0 || b == 0)
+        return divide(1, 0);
+    answer = (a < b) ? b : a;
+
+    while (answer % a != 0 || answer % b != 0)
+        if (++answer == 0)
+            return divide(1, 0); /* Attempt to represent positive overflow. */
+    return (answer);
+}
 
 whole factorial(whole n)
 {

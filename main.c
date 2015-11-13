@@ -13,7 +13,7 @@
 static const char* operators[] = {
     "add", "sub", "mul", "div",
     "exp", "root",
-    "gcd",
+    "gcd", "lcm",
 };
 
 const op_ptr functions[] = {
@@ -26,6 +26,7 @@ const op_ptr functions[] = {
     root,
 
     greatest_common_divisor,
+    least_common_multiple,
 };
 
 int main(void)
