@@ -28,4 +28,4 @@ as -o $obj/main.o               $obj/main.asm
 as -o $obj/calculator.o         $obj/calculator.asm
 
 echo Linking assembled object files...
-gcc -o $src/calc $obj/calculator.o $obj/main.o -s
+gcc -o $src/calc $obj/calculator.o -lm $obj/main.o -s
