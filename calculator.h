@@ -18,6 +18,14 @@ typedef real (*op_ptr)(real m, real n);
 #include <limits.h>
 #include <stddef.h>
 
+/*
+ * Set up exception-handling in C in case the user requests funny things.
+ * Division by 0, even-roots of negative numbers, 0 to the power of 0, etc.
+ */
+#include <setjmp.h>
+extern jmp_buf CPU_state;
+extern void FPU_exception(int exception_ID);
+
 #if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901L)
 typedef long long               integer;
 typedef unsigned long long      whole;

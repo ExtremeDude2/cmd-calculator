@@ -6,6 +6,8 @@
 
 #include <float.h>
 #include <math.h>
+
+#include <signal.h>
 #include "calculator.h"
 
 real add(real m, real n)
@@ -22,13 +24,14 @@ real multiply(real m, real n)
 }
 real divide(real m, real n)
 {
-#ifndef PREFER_NATIVE_HARDWARE_DIVISION_BY_ZERO
-    if (n == 0) /* Undefined, but we must return (something). */
-    {
+    int recovered_from_exception;
+
+    recovered_from_exception = setjmp(CPU_state);
+    if (recovered_from_exception) {
+        signal(SIGFPE, FPU_exception);
         n = DBL_MIN; /* smallest positive real number */
         m = (m < 0) ? -DBL_MAX : +DBL_MAX;
     } /* Geometric graphs of x/0 look prettiest this way. */
-#endif
     return (m / n);
 }
 
