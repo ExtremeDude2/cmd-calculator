@@ -5,6 +5,7 @@
 /************************************************************/
 
 #include <stdio.h>
+#include <signal.h>
 #include "calculator.h"
 
 #include <stdlib.h>
@@ -33,6 +34,7 @@ int main(void)
 {
     size_t i;
     real num1, num2;
+    int recovered_from_exception;
 
     srand(time(NULL));
     for (;;)
@@ -50,13 +52,17 @@ int main(void)
                 functions[i](num1, num2)
             );
 
-        if (num1 < 0)
-            puts("Error: cannot find the square root of a number less than 0");
+        signal(SIGFPE, FPU_exception);
+        recovered_from_exception = setjmp(CPU_state);
+        if (recovered_from_exception)
+            printf("The square root of %g is %g*i.\n", num1, root(-num1, 2));
         else
             printf("The square root of %g is %g.\n", num1, root(num1, 2));
 
-        if (num2 < 0)
-            puts("Error: cannot find the square root of a number less than 0");
+        signal(SIGFPE, FPU_exception);
+        recovered_from_exception = setjmp(CPU_state);
+        if (recovered_from_exception)
+            printf("The square root of %g is %g*i.\n", num2, root(-num2, 2));
         else
             printf("The square root of %g is %g.\n", num2, root(num2, 2));
 
@@ -109,4 +115,19 @@ static double carry_in(void)
         temp_buffer[i] = (char)character;
     }
     return 0; /* standard library:  No valid conversion can be done. */
+}
+
+jmp_buf CPU_state; /* as of before attempting the offending command */
+void FPU_exception(int exception_ID)
+{
+    signal(SIGFPE, FPU_exception);
+    fprintf(
+        stderr,
+        "Hardware-native division by zero not available (signal %i).\n"\
+        "Forcing in software...\n",
+        exception_ID
+    );
+    longjmp(CPU_state, exception_ID);
+    fprintf(stderr, "Unable to recover from exception:  no recovery point\n");
+    return;
 }
