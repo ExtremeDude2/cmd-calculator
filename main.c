@@ -97,7 +97,7 @@ int main(void)
     return 0;
 }
 
-static double carry_in(void)
+double carry_in(void)
 {
     static char temp_buffer[64];
     register size_t i;

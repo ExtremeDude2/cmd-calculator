@@ -58,6 +58,6 @@ extern whole factorial(whole n);
 /*
  * string-to-number input conversion replacement for C++ cout and cin
  */
-static double carry_in(void);
+extern double carry_in(void);
 
 #endif
