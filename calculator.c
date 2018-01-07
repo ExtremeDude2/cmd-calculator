@@ -26,6 +26,7 @@ real divide(real m, real n)
 {
     int recovered_from_exception;
 
+    signal(SIGFPE, FPU_exception);
     recovered_from_exception = setjmp(CPU_state);
     if (recovered_from_exception) {
         signal(SIGFPE, FPU_exception);
